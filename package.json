@@ -1,0 +1,20 @@
+{
+  "name": "mochi-blog",
+  "version": "0.0.0",
+  "description": "Mochi's personal blog.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Mochi",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.56.1",
+    "vitepress": "1.0.0-alpha.29"
+  }
+}
