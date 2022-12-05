@@ -1,0 +1,25 @@
+/* 主页标题渐变色 */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+}
+
+/* 添加日系可爱情书体 https://font.chinaz.com/22111054169.htm */
+@font-face {
+  font-family: custom;
+  src: url(../font/font2.ttf);
+}
+
+/* layout 为 doc 时字体更换  */
+.vp-doc p,
+li {
+  font-family: custom;
+  /* font-weight: bold; */
+}
+.vp-doc p {
+  font-size: 18px;
+}
+
+/* body {
+  background-image: url('../images/bg.jpg');
+} */
