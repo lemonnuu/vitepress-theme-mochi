@@ -1,3 +1,4 @@
 import htmlSidebar from './htmlSidebar'
+import cssSidebar from './cssSidebar'
 
-export { htmlSidebar }
+export { htmlSidebar, cssSidebar }

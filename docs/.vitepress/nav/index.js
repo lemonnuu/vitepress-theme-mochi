@@ -3,7 +3,7 @@ const nav = [
     text: '基础强化',
     items: [
       { text: 'HTML', link: '/HTML/', activeMatch: '/HTML/' },
-      { text: 'CSS', link: '/CSS/', activeMatch: '/CSS/' },
+      { text: 'CSS', link: '/CSS/CSS/01_basic', activeMatch: '/CSS/' },
       { text: 'JavaScript', link: '/JAVASCRIPT/', activeMatch: '/JAVASCRIPT/' },
       { text: 'TypeScript', link: '/TYPESCRIPT/', activeMatch: '/TYPESCRIPT/' },
       { text: 'Vue.js', link: '/VUE/', activeMatch: '/VUE/' },

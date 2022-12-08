@@ -7,7 +7,8 @@ const themeConfig = {
   siteTitle: 'Mochi Blog', // 主页标题, 设置为 false 可不显示
   nav,
   sidebar: {
-    '/guide/': sidebar.htmlSidebar,
+    '/HTML/': sidebar.htmlSidebar,
+    '/CSS/': sidebar.cssSidebar,
   },
   outlineTitle: '大纲', // 大纲标题
   outline: [2, 3], // 大纲层级
@@ -17,7 +18,7 @@ const themeConfig = {
     next: '下一页',
   },
   editLink: {
-    pattern: 'https://github.com/lemonnuu/mochi-blog/master/docs/:path', // 编辑链接
+    pattern: 'https://github.com/lemonnuu/mochi-blog/blob/master/docs/:path', // 编辑链接
     text: '编辑此页',
   },
   socialLinks: [{ icon: 'github', link: 'https://github.com/lemonnuu' }],
