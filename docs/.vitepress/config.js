@@ -9,6 +9,8 @@ const themeConfig = {
   sidebar: {
     '/HTML/': sidebar.htmlSidebar,
     '/CSS/': sidebar.cssSidebar,
+    '/ROLLUP/': sidebar.buildToolSidebar,
+    '/WEBPACK/': sidebar.buildToolSidebar,
   },
   outlineTitle: '大纲', // 大纲标题
   outline: [2, 3], // 大纲层级

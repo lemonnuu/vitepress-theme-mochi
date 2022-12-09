@@ -2,6 +2,10 @@
 
 天天听说 Rollup Rollup, Rollup 到底是个啥, 又有啥优势, 为什么开源库都喜欢它？
 
+webpack 生成的代码有很多不是我们所写的逻辑代码, 比如一些他自有的模块加载功能, 对于业务项目来说这些影响不大。
+
+但编写类库时, 由于类库本身就很小, 如果还用 Webpack 打包的话就显得有的不合适了, 所以编写类库适合用 rollup 打包。
+
 ## 概述
 
 [Rollup](https://rollupjs.org/guide/en/#core-functionality) 是一个 JavaScript 模块打包工具, 可以将多个小的代码片段编译为完整的库和应用, 使用的是 ES Module 模块标准规范。
@@ -14,7 +18,9 @@
 
 #### 发布模块
 
-在编写类库时, 为了保证不同的模块化规范(CommonJS、ES Module)都能够正常的使用咱们的库。往往需要借助 Rollup 构建出多份不同格式的文件, 像 Vue 就是这么做的。
+在编写类库时, 为了保证不同的模块化规范(CommonJS、ES Module)都能够正常的使用咱们的库。往往需要借助 Rollup 构建出多份不同格式的文件。
+
+> 像 Vue 就是这么做的。
 
 然后在 `package.json` 文件的 `main` 属性中指向 UMD 或 CommonJS 规范的代码, `module` 属性指向 ES Module 规范代码。
 
@@ -88,9 +94,11 @@ Basic options:
 
 #### 配置文件
 
-在 Rollup 2 时, Rollup 希望配置文件是一个 ES Module 模块, 对外导出的可以是一个对象、数组以及函数。
+Rollup2 时, 配置文件希望是一个 ES Module 模块, 对外导出的可以是一个对象、数组以及函数。
 
-但在 Rollup3+ 时, Rollup 配置文件的模块化规范受 `package.json` 文件影响, 
+> Rollup3+ 时, Rollup 配置文件的模块化规范受 `package.json` 文件的 `type` 属性影响, 如若不是 `"type": "module"`, 配置文件需是 CommonJS 规范。是 `"type": "module"`时, 需是 ES Module 规范。
+>
+> 当然也可以改为 `.mjs` 或 `.cjs` 以决定使用哪种规范。
 
 ```js
 export default {
@@ -129,9 +137,9 @@ export default [
 ];
 ```
 
-或者如果共用一个入口的话, 可以将 `output` 配置为数组。
+或者如果共用一个入口的话, 也可以将 `output` 配置为数组。
 
-> 推荐使用导出数组的方式而不是将 output 配置为数组, 因为容易扩展。
+> 推荐使用导出数组的方式, 而不是将 output 配置为数组, 因为容易扩展。
 
 如果需要根据命令行参数动态调整配置文件, 可以导出一个函数, 函数的返回值是真正的配置, 函数的参数会接收当前命令行的参数：
 
@@ -161,7 +169,38 @@ rollup --config my.config.js
 rollup --config
 ```
 
-> Rollup 本身执行了配置文件, 因此我们能够使用 export default 语法 – 这些代码没有被 Babel 或者其他类似工具编译，因此只能使用 Node.js 版本支持的 ES2015 语法特性。
+> Rollup 本身执行了配置文件, 因此我们能够使用 export default 语法 – 这些代码没有被 Babel 或者其他类似工具编译, 因此只能使用 Node.js 版本支持的 ES2015 语法特性。
+
+##### iife 与 umd
+
+当 `format` 配置为 `iife` 或 `umd` 格式时, 需要特别注意一点。
+
+当入口文件需要导出内容, 比如 `export const a = 123` 时, 就需要配置 `output.name` 选项, 告诉 Rollup 将导出挂载至全局变量的哪个属性下。
+
+```js
+export default {
+  // ...
+  output: {
+    format: 'umd',
+    name: 'namename'
+  }
+}
+```
+
+##### banner 和 footer
+
+如果想给打包生成的 bundle 添加一些诸如作者信息之类是注释, 可以使用 banner 和 footer。
+
+```js
+export default {
+  // ...
+  output: {
+    // ...
+    banner: '// Banner',
+    footer: '// Footer'
+  }
+}
+```
 
 #### 转译配置文件
 
@@ -187,27 +226,436 @@ import pkg from './load-package.cjs';
 ...
 ```
 
+#### 配置文件列表
+
+```js
+// rollup.config.js
+export default { // 可以是一个数组（用于多个输入的情况）
+  // 核心的输入选项 // [!code focus:4]
+  external,
+  input, // 必要项
+  plugins,
+
+  // 高级输入选项
+  cache,
+  onwarn,
+  preserveEntrySignatures,
+  strictDeprecations,
+
+  // 危险区
+  acorn,
+  acornInjectPlugins,
+  context,
+  moduleContext,
+  preserveSymlinks,
+  shimMissingExports,
+  treeshake,
+
+  // 实验性
+  experimentalCacheExpiry,
+  perf,
+
+  output: { // 必要项 (可以是一个数组, 用于多输出的情况) // [!code focus:8]
+    // 核心的输出选项
+    dir,
+    file,
+    format, // 必要项
+    globals,
+    name,
+    plugins,
+
+    // 高级输出选项
+    assetFileNames,
+    banner,
+    chunkFileNames,
+    compact,
+    entryFileNames,
+    extend,
+    footer,
+    hoistTransitiveImports,
+    inlineDynamicImports,
+    interop,
+    intro,
+    manualChunks,
+    minifyInternalExports,
+    outro,
+    paths,
+    preserveModules,
+    sourcemap,
+    sourcemapExcludeSources,
+    sourcemapFile,
+    sourcemapPathTransform,
+
+    // 危险区
+    amd,
+    esModule,
+    exports,
+    externalLiveBindings,
+    freeze,
+    indent,
+    namespaceToStringTag,
+    noConflict,
+    preferConst,
+    strict,
+    systemNullSetters
+  },
+
+  watch: {
+    buildDelay,
+    chokidar,
+    clearScreen,
+    skipWrite,
+    exclude,
+    include
+  } | false
+}; // [!code focus]
+```
+
 ### JavaScript API
 
-Rollup 虽然提供了可在 Node.js 中使用的 JavaScript API。但是一般情况下不需要使用它，而应使用命令行, 除非需要扩展 Rollup 本身或者使用它进行一些高级操作, 比如通过编程生成 bundle。
+Rollup 虽然提供了可在 Node.js 中使用的 [JavaScript API](https://rollupjs.org/guide/en/#javascript-api)。但是一般情况下不需要使用它, 而应使用命令行, 除非需要扩展 Rollup 本身或者使用它进行一些高级操作, 比如通过编程生成 bundle。
 
 > 所以需要的话去翻官方文档吧。
 
-## 插件
+## [插件](https://github.com/rollup/plugins)
 
-Rollup 并不能"开箱即用", 插件是它的一大特色, 可以说, 没插件
+Rollup 的 plugins 是有顺序关系的, 最前面的先执行。
 
-在打包 iife 或者是 umd 时, 如果有导出就需要 name 属性, name 会挂载至全局变量上, global.name
+> 可以说, rollup 没使用插件就废了一半...
 
-艹, 3 ES 直接出错, 是根据 package.json 来的, 3 改版了
+### [@rollup/plugin-json](https://github.com/rollup/plugins/tree/master/packages/json)
 
-node-resolved 才会打包在一起, 没有这个插件不高
+Rollup 默认是不能导入 JSON 文件的, 如需导入需要安装 `@rollup/plugin-json` 插件并使用。
 
-没有 resolve 没必要external
+```shell
+npm install @rollup/plugin-json -D
+```
+
+```js
+import json from '@rollup/plugin-json'
+export default {
+  // ...
+  plugins: [
+    json()
+  ]
+}
+```
+
+### [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
+
+Rollup 默认不会将 NPM 包依赖打包在 bundle 中, 如果需要这么做, 需要使用 `@rollup/plugin-node-resolve` 插件。
+
+```shell
+npm install @rollup/plugin-node-resolve -D
+```
+
+```js
+import resolve from '@rollup/plugin-node-resolve'
+export default {
+  // ...
+  plugins: [
+    resolve()
+  ]
+}
+```
+
+### [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs)
+
+在使用 `@rollup/plugin-node-resolve` 后, 如果 NPM 包支持 ES Module 规范的导入则万事大吉, 但如果只支持 CommonJS 规范, 还需要使用 `@rollup/plugin-commonjs` 插件。
+
+```shell
+npm install @rollup/plugin-commonjs -D
+```
+
+```js
+import commonjs from '@rollup/plugin-commonjs'
+export default {
+  // ...
+  plugins: [
+    commonjs()
+  ]
+}
+```
+
+### 前置依赖
+
+使用了 `@rollup/plugin-node-resolve` 插件后, 默认会把所有的依赖项打包至 bundle 中, 但是更多的场景往往是需要控制哪些需要被打包, 哪些是作为前置依赖。
+
+属性 `external` 用于配置前置依赖, 其接收一个模块名称组成的数组, 或者接收一个参数为模块名字的函数, 如果需要把某模块设置为外部引入, 只需要让该函数返回 true。
+
+```js
+export default {
+  // ...
+  // external: ['lodash'],
+  external: id => /lodash/.test(id)
+}
+```
+
+当 format 为 iife 或 umd 时, 前置依赖可能是全局变量的某个属性, Rollup 会根据 `external` 提供的模块名称自动猜测, 如：
+
+- react -> (guessing "React")
+- lodash -> (guessing "_")
+
+但偶尔, Rollup 猜测的可能不符合我们的预期, 就可以把 `external` 数组的每一项配置为一个对象, 键为模块名称, 值为预设的属性名称。
+
+```js
+export default {
+  // ...
+  external: [{ 'react': 'React' }, { 'lodash': '_' }]
+}
+```
+
+### [@rollup/plugin-terser](https://github.com/rollup/plugins/tree/master/packages/terser)
+
+在生产环境下, 打包后的代码往往需要经过压缩, 压缩代码可以使用 `@rollup/plugin-terser` 插件。
+
+> 插件不仅可以使用在"外层"的 `plugins` 中, 还可以使用在 `output.plugins` 中。`output.plugins` 中的插件会在"打包完成后"执行。
 
 
+```shell
+npm install @rollup/plugin-terser -D
+```
+
+```js
+import terser from '@rollup/plugin-terser'
+
+export default {
+  // ...
+  output: {
+    dir: 'output',
+    format: 'cjs',
+    plugins: [terser()]
+  }
+}
+```
+
+> 需要注意的是, @rollup/plugin-terser@0.2.0+ 版本可能需要依赖 CommonJS, 所以如果采用 ES Module 规范书写配置文件时, 需要在命令行添加 `--bundleConfigAsCjs` 参数。
+> 
+### [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias)
+
+`@rollup/plugin-alias` 插件可以给包的导入路径定义别名
+
+> 这个插件的作用很熟悉的好伐！像 Vue 中可以通过 `@` 导入 `src` 下面的内容就是它的作用。
+
+```shell
+npm install @rollup/plugin-alias -D
+```
+
+```js
+import alias from '@rollup/plugin-alias'
+import path from 'path'
+
+export default {
+  // ...
+  plugins: [
+    alias({
+      entries: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+      ]
+    })
+  ]
+}
+```
+
+> 这里使用了 `path.resolve()`, 所以如果是 ES Module 规范书写的配置文件命令行也需要添加 `--bundleConfigAsCjs` 参数。
+
+### [@rollup/plugin-babel](https://github.com/rollup/plugins/tree/master/packages/babel)
+
+为了能够使用浏览器和 Node.js 尚不支持的最新 JavaScript 特性, 需要使用到 Babel。
+
+Babel 和 Rollup 一起使用的最简单的方式就是通过 `@rollup/plugin-babel` 插件。
+
+```shell
+npm install @rollup/plugin-babel -D
+```
+
+如果 `@rollup/plugin-babel` 和 `@rollup/plugin-commonjs` 需要一起使用, commonjs 必须放在 babel 的前面。
+
+```js
+import commonjs from '@rollup/plugin-commonjs';
+import { babel } from '@rollup/plugin-babel';
+
+export default {
+  // ...
+  plugins: [
+    commonjs(),
+    babel({ babelHelpers: 'bundled' })
+  ]
+}
+```
+
+在 Babel 实际编译代码之前, 还需要对其进行配置。创建 `src/.babelrc` 文件：
+
+```json
+{
+  "presets": [
+    ["@babel/env", {"modules": false}]
+  ]
+}
+```
+
+这里需要将 `modules` 设置为 `false`, 否则 Babel 将在 Rollup 有机会执行其操作之前将模块转换为 CommonJS, 从而导致其失败。
+
+接着安装 `babel-core` 和 `env` 就可以了。
+
+```shell
+npm install @babel/core @babel/preset-env -D
+```
+
+### [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace)
+
+`@rollup/plugin-replace` 插件可以替换文件中的目标字符串。
+
+> 一般可用于替换 `__buildDate__`、`__buildVersion` 什么之类的。
+
+```shell
+npm install @rollup/plugin-replace -D
+```
+
+```js
+import replace from '@rollup/plugin-replace';
+
+export default {
+  // ...
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      __buildDate__: () => JSON.stringify(new Date()),
+      __buildVersion: 15
+    })
+  ]
+}
+```
+
+### [@rollup/plugin-typescript](https://github.com/rollup/plugins/tree/master/packages/typescript)
+
+如果需要使用 typescript, 可以使用 `@rollup/plugin-typescript` 插件。
+
+> Babel、esbuild 都可以编译 TS 文件, 只不过它们不会校验类型。
+
+`@rollup/plugin-typescript` 插件需要依赖于 `typescript` 和 `tslib`。
+
+```shell
+npm install typescript tslib @rollup/plugin-typescript -D
+```
+
+```js
+import typescript from '@rollup/plugin-typescript';
+
+export default {
+  input: './src/main.ts',
+  // ...
+  plugins: [
+    typescript()
+  ]
+}
+```
+
+### [rollup-plugin-typescript2](https://github.com/ezolenko/rollup-plugin-typescript2)
+
+`rollup-plugin-typescript2` 不是官方插件, 比 `@rollup/plugin-typescript` 编译慢一点点, 但它会打印出 TypeScript 语法诊断信息。
+
+> Vue 使用的就是 rollup-plugin-typescript2 插件。
+
+```shell
+npm install typescript tslib rollup-plugin-typescript2 -D
+```
+
+```js
+import typescript from 'rollup-plugin-typescript2';
+
+export default {
+  input: './src/main.ts',
+  // ...
+  plugins: [
+    typescript()
+  ]
+}
+```
+
+### [@rollup/plugin-eslint](https://github.com/rollup/plugins/tree/master/packages/eslint)
+
+Rollup 和 ESLint 结合可使用 `@rollup/plugin-eslint` 插件。
+
+```shell
+npm install @rollup/plugin-eslint -D
+```
+
+> 这并不意味着你不需要安装 ESlint 和配置 `.eslintrc.js`, 这里默认你有。
 
 
+```js
+import eslint from '@rollup/plugin-eslint'
 
+export default {
+  // ...
+  plugins: [
+    eslint({
+      // throwOnError: true,
+      // fix: true
+    })
+  ]
+}
+```
 
+这样打包的话, 如果 eslint 校验不通过会在控制台输出错误信息, 但仍可以生成 bundle。如果想有错误停止打包可将 `throwOnError` 选项配置为 true, 如果想自动修复可将 `fix` 选项配置为 true。
 
+### [@rollup/plugin-image](https://github.com/rollup/plugins/tree/master/packages/image)
+
+如果想引入图片资源需要使用 `@rollup/plugin-image` 插件, 实际上就是转为了 base64。
+
+> base64 编码比磁盘上的大小大 33%, 也就是说 `base64 : 磁盘 = 4 : 3`。
+
+```shell
+npm install @rollup/plugin-image -D
+```
+
+```js
+import image from '@rollup/plugin-image'
+
+export default {
+  // ...
+  plugins: [image()]
+}
+```
+
+### [@rollup/plugin-strip](https://github.com/rollup/plugins/tree/master/packages/strip)
+
+这个插件会在代码中删除调试语句, 如 `console.log()`、`assert.equal` 等。
+
+> 这个插件并不是那么的常用, 因为生产环境下 terser 就可以做到。
+
+```shell
+npm install @rollup/plugin-strip --save-dev
+```
+
+```js
+import strip from '@rollup/plugin-strip'
+
+export default {
+  // ...
+  plugins: [
+    strip()
+  ]
+}
+```
+
+### [编写插件](https://rollupjs.org/guide/en/#plugins-overview)
+
+编写插件实际上就是调用一系列的 Hook, 执行某些特定的操作, 有需要再看官网。
+
+## [常见问题](https://rollupjs.org/guide/en/#faqs)
+
+> 摘抄至官网。
+
+### 为什么 ES 模块比 CommonJS 模块更好?
+
+ES 模块是一个官方标准, 也是 JavaScript 代码结构的明确的发展方向, 而 CommonJS 模块是一种特殊且老旧的格式, 仅仅在提出 ES 模块标准之前作为暂时性的解决方案。
+
+ES 模块允许进行静态分析, 从而有助于 tree-shaking 和作用域提升(scope-hoisting)之类的优化工作, 同时提供了一些高级特性, 例如循环引用和实时绑定。
+
+### 什么是“tree-shaking”?
+
+Tree-shaking, 也被称为“live code inclusion”, 是 Rollup 消除项目中并未实际使用到的代码的过程。它是一种消除无效代码的方式, 但在优化输出内容大小方面可能比其他方法有效得多。这个名字源于模块内容(而非模块图)的抽象语法树(abstract syntax tree, AST)。
+
+Tree-shaking 算法首先标记所有相关语句, 然后 "摇动语法树" 以删除所有无效代码。其思想类似于标记-清除垃圾收集算法。
