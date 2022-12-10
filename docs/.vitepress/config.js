@@ -11,6 +11,7 @@ const themeConfig = {
     '/CSS/': sidebar.cssSidebar,
     '/ROLLUP/': sidebar.buildToolSidebar,
     '/ESBUILD/': sidebar.buildToolSidebar,
+    '/PARCEL/': sidebar.buildToolSidebar,
     '/WEBPACK/': sidebar.buildToolSidebar,
   },
   outlineTitle: '大纲', // 大纲标题

@@ -34,7 +34,7 @@ esbuild 是一个极速的 JavaScript 打包器, 和 Rollup 不同, 它是用 Go
 
 接下来, 就让我们一起来看看这个快到离谱的"男人"。wiki 分为两个章节：
 
-- 快速上手：esbuild 基本使用
-- 常见问题：关于 esbuild 的一些疑惑
+- [快速上手](02_use.md)：esbuild 基本使用
+- [常见问题](03_faqs.md)：关于 esbuild 的一些疑惑
 
 > 注：wiki 并没有包含 esbuild 插件板块, 如果想写 Vite 插件的话, 研究一下还是很有必要的, 因为 Vite 插件需要兼容 esbuild 和 Rollup。

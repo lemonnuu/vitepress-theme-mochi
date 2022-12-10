@@ -18,6 +18,13 @@ const buildToolSidebar = [
       { text: '常见问题', link: '/ESBUILD/03_faqs' },
     ],
   },
+  {
+    text: 'Parcel',
+    collapsible: true,
+    items: [
+      { text: '前言', link: '/PARCEL/01_pre' },
+    ],
+  },
 ]
 
 export default buildToolSidebar
