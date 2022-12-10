@@ -9,6 +9,15 @@ const buildToolSidebar = [
       { text: '常见问题', link: '/ROLLUP/04_faqs' },
     ],
   },
+  {
+    text: 'esbuild',
+    collapsible: true,
+    items: [
+      { text: '前言', link: '/ESBUILD/01_pre' },
+      { text: '快速上手', link: '/ESBUILD/02_use' },
+      { text: '常见问题', link: '/ESBUILD/03_faqs' },
+    ],
+  },
 ]
 
 export default buildToolSidebar

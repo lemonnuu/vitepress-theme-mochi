@@ -19,3 +19,26 @@ li {
 .vp-doc p {
   font-size: 18px;
 }
+
+/* -------------------------------------- */
+
+:root {
+  --light-theme-color-1: indianred;
+}
+
+:root.dark {
+  --light-theme-color-1: rgb(28, 203, 194);
+}
+
+.linear-color {
+  /* background -> background-clip -> color 顺序不能乱, color 和 -webkit-text-fill-color 都可以 */
+  background: -webkit-linear-gradient(120deg, #13b2c1, #d2cf16);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* -webkit-text-fill-color: transparent; */
+}
+
+.color1 {
+  color: var(--light-theme-color-1)
+}

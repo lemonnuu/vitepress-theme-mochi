@@ -10,6 +10,7 @@ const themeConfig = {
     '/HTML/': sidebar.htmlSidebar,
     '/CSS/': sidebar.cssSidebar,
     '/ROLLUP/': sidebar.buildToolSidebar,
+    '/ESBUILD/': sidebar.buildToolSidebar,
     '/WEBPACK/': sidebar.buildToolSidebar,
   },
   outlineTitle: '大纲', // 大纲标题

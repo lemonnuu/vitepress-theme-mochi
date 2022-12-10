@@ -4,9 +4,9 @@ titleTemplate: 常见问题
 outline: [2,4]
 ---
 
-# [Rollup 常见问题]((https://rollupjs.org/guide/en/#faqs))
+# [Rollup 常见问题](https://rollupjs.org/guide/en/#faqs)
 
-> 摘抄至官网。
+> 摘抄于官网。
 
 ***
 
