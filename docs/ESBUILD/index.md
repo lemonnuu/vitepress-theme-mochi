@@ -14,3 +14,10 @@ Vite 使用 ESbuild 只是在开发环境中使用
 
 --define:TEST=12
 
+
+设置环境变量的方式：
+
+- `--environment TEST:12`
+
+`"build": "rollup -c --bundleConfigAsCjs --environment TEST:26"`
+
