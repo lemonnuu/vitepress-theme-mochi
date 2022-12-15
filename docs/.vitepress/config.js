@@ -13,6 +13,8 @@ const themeConfig = {
     '/ESBUILD/': sidebar.buildToolSidebar,
     '/PARCEL/': sidebar.buildToolSidebar,
     '/WEBPACK/': sidebar.buildToolSidebar,
+    '/VUE/': sidebar.vueSidebar,
+    '/PINIA/': sidebar.vueSidebar,
   },
   outlineTitle: '大纲', // 大纲标题
   outline: [2, 3], // 大纲层级

@@ -6,7 +6,7 @@ const nav = [
       { text: 'CSS', link: '/CSS/CSS/01_basic', activeMatch: '/CSS/' },
       { text: 'JavaScript', link: '/JAVASCRIPT/', activeMatch: '/JAVASCRIPT/' },
       { text: 'TypeScript', link: '/TYPESCRIPT/', activeMatch: '/TYPESCRIPT/' },
-      { text: 'Vue.js', link: '/VUE/', activeMatch: '/VUE/' },
+      { text: 'Vue 全家桶', link: '/VUE/001_pre'},
       { text: 'React.js', link: '/REACT/', activeMatch: '/REACT/' },
       { text: '构建工具链', link: '/ROLLUP/01_pre' },
       { text: 'Webpack', link: '/WEBPACK/', activeMatch: '/WEBPACK/' },

@@ -4,31 +4,38 @@
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
 }
 
-/* 添加日系可爱情书体 https://font.chinaz.com/22111054169.htm */
+/* 添加 SourceCodePro 字体 https://github.com/adobe-fonts/source-code-pro */
+@font-face {
+  font-family: SourceCodePro;
+  src: url(../font/SourceCodePro.ttf);
+}
+
+/* 添加草莓蜜糖甜甜酥字体 */
 @font-face {
   font-family: custom;
   src: url(../font/草莓蜜糖甜甜酥.ttf);
 }
 
-/* layout 为 doc 时字体更换  */
+/* layout 为 doc 时更换字体  */
 .vp-doc p,
 li {
-  font-family: custom;
+  font-family: 'SourceCodePro', 'custom';
 }
 
-.vp-doc p {
-  font-size: 18px;
+code {
+  font-family: 'SourceCodePro';
+}
+
+/* 重点句子渐变色 */
+.vp-doc i{
+  font-style: none;
+  background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* -------------------------------------- */
-
-:root {
-  --light-theme-color-1: indianred;
-}
-
-:root.dark {
-  --light-theme-color-1: rgb(28, 203, 194);
-}
 
 .linear-color {
   /* background -> background-clip -> color 顺序不能乱, color 和 -webkit-text-fill-color 都可以 */
@@ -37,8 +44,4 @@ li {
   -webkit-background-clip: text;
   color: transparent;
   /* -webkit-text-fill-color: transparent; */
-}
-
-.color1 {
-  color: var(--light-theme-color-1)
 }
