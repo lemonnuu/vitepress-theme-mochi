@@ -4,6 +4,24 @@
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
 }
 
+/* logo 高度重新设置 */
+.VPImage.logo {
+  height: 52px;
+}
+
+.VPNavBarTitle {
+  background-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+/* iconfont symbol 引入 */
+.icon-font {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  overflow: hidden;
+}
+
 /* 添加 SourceCodePro 字体 https://github.com/adobe-fonts/source-code-pro */
 @font-face {
   font-family: SourceCodePro;
@@ -19,7 +37,8 @@
 /* layout 为 doc 时更换字体  */
 .vp-doc p,
 li {
-  font-family: 'SourceCodePro', 'custom';
+  /* font-family: 'SourceCodePro', 'custom'; */
+  font-family: 'SourceCodePro';
 }
 
 code {
@@ -27,7 +46,7 @@ code {
 }
 
 /* 重点句子渐变色 */
-.vp-doc i{
+.vp-doc i {
   font-style: none;
   background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
   background-clip: text;

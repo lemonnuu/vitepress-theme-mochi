@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import MochiLayout from './components/MochiLayout.vue'
+import './icons/symbol'
 import './css/index.css'
 import './css/custom.css'
 

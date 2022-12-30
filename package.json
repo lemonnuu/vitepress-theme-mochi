@@ -14,7 +14,14 @@
   "author": "Mochi",
   "license": "MIT",
   "devDependencies": {
+    "chalk": "4.1.2",
     "sass": "^1.56.1",
     "vitepress": "1.0.0-alpha.29"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "js-yaml": "^4.1.0",
+    "moment": "^2.29.4",
+    "vue": "^3.2.45"
   }
 }
