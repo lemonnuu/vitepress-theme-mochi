@@ -42,6 +42,7 @@ const toggleOutlineShow = () => {
 watch(outlineShowState, (val) => {
   nextTick(() => {
     const outlineEle = document.querySelector('.VPDocAsideOutline')
+    if (!outlineEle) return
     if (!val) return (outlineEle.style.display = 'none')
     const display = recordOutlineShowState.value ? 'block' : 'none'
     outlineEle.style.display = display
@@ -58,6 +59,13 @@ const toggleMenuShow = () => {
   sidebarEle.style.display = display
   recordMenuShowState.value = !recordMenuShowState.value
 }
+
+// 只有 layout 为 docs 或 undefined 时才显示菜单控制
+const isShowMenuControl = computed(() => {
+  const layout = data.page.value.frontmatter.layout
+  if (typeof layout === 'undefined' || layout === 'docs') return true
+  return false
+})
 </script>
 
 <script>
@@ -66,7 +74,7 @@ export default defineComponent({})
 
 <template>
   <!-- 控制菜单的显示与隐藏 -->
-  <div class="sidebar-nav-toggle" @click="toggleMenuShow">
+  <div v-if="isShowMenuControl" class="sidebar-nav-toggle" @click="toggleMenuShow">
     <svg class="icon-font icon-arrow" aria-hidden="true">
       <use :xlink:href="recordMenuShowState ? '#icon-zuojiantou' : '#icon-youjiantou'"></use>
     </svg>

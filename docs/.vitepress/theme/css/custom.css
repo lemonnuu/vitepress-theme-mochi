@@ -1,7 +1,11 @@
-/* 主页标题渐变色 */
 :root {
+  /* 主页标题渐变色 */
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+}
+
+:root::-webkit-scrollbar {
+  display: none;
 }
 
 /* logo 高度重新设置 */
