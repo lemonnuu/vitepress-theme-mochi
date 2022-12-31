@@ -13,8 +13,8 @@ const getTargetDirs = async () => {
   const allDirs = await fs.readdir(config.articlePath)
   const dirsStatPromiseArr = []
   const dirsPathArr = []
-  allDirs.forEach(dir => {
-    if (config.excludeDirs.includes(dir)) return 
+  allDirs.forEach((dir) => {
+    if (config.excludeDirs.includes(dir)) return
     const pathWay = path.resolve(config.articlePath, dir)
     dirsStatPromiseArr.push(fs.stat(pathWay))
     dirsPathArr.push(pathWay)
@@ -37,12 +37,12 @@ const getAllMdFiles = async (pathWay) => {
   const dirs = await fs.readdir(pathWay)
   const statPromiseArr = []
   const dirsPathArr = []
-  dirs.forEach(dir => {
+  dirs.forEach((dir) => {
     statPromiseArr.push(fs.stat(path.resolve(pathWay, dir)))
     dirsPathArr.push(path.resolve(pathWay, dir))
   })
   const statArr = await Promise.all(statPromiseArr)
-  for(let i = 0; i < statArr.length; i++) {
+  for (let i = 0; i < statArr.length; i++) {
     if (statArr[i].isDirectory()) {
       mdFileArr.push(...(await getAllMdFiles(dirsPathArr[i])))
     } else {
@@ -52,7 +52,7 @@ const getAllMdFiles = async (pathWay) => {
   return mdFileArr
 }
 
-const yamlRegExp = /---(.*?)---/sg
+const yamlRegExp = /---(.*?)---/s
 
 /**
  * 获取文件内容, 并根据 frontmatter 数据判断需不需要添加至于 pages
@@ -62,35 +62,35 @@ const yamlRegExp = /---(.*?)---/sg
 const getContent = async (pathWay) => {
   const content = await fs.readFile(pathWay, 'utf-8')
   const yamlArr = yamlRegExp.exec(content)
-  if (!yamlArr) return false
+  if (!yamlArr || !yamlArr[1]) return false
   const yamlObj = yaml.load(yamlArr[1])
   if (!yamlObj.date) return false
   yamlObj.link = pathWay.replace(path.resolve(config.articlePath), '').replaceAll('\\', '/').replace('.md', '')
   yamlObj.timestamp = moment(yamlObj.date).valueOf()
-  return  yamlObj
+  return yamlObj
 }
 
 const getPages = async () => {
-  console.log(chalk.red('正在解析 pages...'));
+  console.log(chalk.red('正在解析 pages...'))
   const targetDirs = await getTargetDirs()
   const mdFilePromiseArr = []
-  targetDirs.forEach(pathWay => {
+  targetDirs.forEach((pathWay) => {
     mdFilePromiseArr.push(getAllMdFiles(pathWay))
   })
   let mdFileArr = await Promise.all(mdFilePromiseArr)
   mdFileArr = mdFileArr.flat(Infinity)
   const infoPromiseArr = []
-  mdFileArr.forEach(filePath => {
+  mdFileArr.forEach((filePath) => {
     infoPromiseArr.push(getContent(filePath))
   })
   const infoArr = await Promise.all(infoPromiseArr)
   const pages = []
-  infoArr.forEach(info => {
-    if (!info) return 
+  infoArr.forEach((info) => {
+    if (!info) return
     pages.push(info)
   })
   await fse.writeJSON(path.resolve(config.pagesPath, './pages.json'), pages)
-  console.log(chalk.red('pages 解析完成, 开始构建'));
+  console.log(chalk.red('pages 解析完成, 开始构建'))
   return pages
 }
 

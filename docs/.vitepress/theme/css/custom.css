@@ -39,8 +39,7 @@
 }
 
 /* layout 为 doc 时更换字体  */
-.vp-doc p,
-li {
+.vp-doc p {
   /* font-family: 'SourceCodePro', 'custom'; */
   font-family: 'SourceCodePro';
 }

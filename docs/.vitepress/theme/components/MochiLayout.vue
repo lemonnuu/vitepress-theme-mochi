@@ -3,7 +3,6 @@
 import DefaultTheme from 'vitepress/theme'
 import { defineComponent, ref, watch, computed, nextTick } from 'vue'
 import { useData, useRoute, useRouter } from 'vitepress' // vitepress 暴露的 API
-import pages from '../../../../helper/pages.json'
 
 const data = useData()
 const route = useRoute()
@@ -11,7 +10,6 @@ const router = useRouter()
 console.log('data', data)
 console.log('route', route)
 console.log('router', router.routes)
-console.log(pages[0])
 
 const { Layout } = DefaultTheme
 
