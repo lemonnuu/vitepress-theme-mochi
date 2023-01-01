@@ -105,7 +105,6 @@ Object.keys(tagsMap).forEach((key) => {
     link: '',
   })
 })
-console.log(tagsList)
 </script>
 
 <template>

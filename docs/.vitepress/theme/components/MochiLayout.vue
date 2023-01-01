@@ -1,8 +1,10 @@
 <script setup>
-// Layout 暴露了插槽 https://vitepress.vuejs.org/guide/theme-introduction#layout-slots
+import HomeView from './HomeView.vue'
 import DefaultTheme from 'vitepress/theme'
 import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData, useRoute, useRouter } from 'vitepress' // vitepress 暴露的 API
+import LayoutContainer from './layoutContainer.vue'
+import TimeLine from './TimeLine.vue'
 
 const data = useData()
 const route = useRoute()
@@ -65,13 +67,16 @@ const isShowMenuControl = computed(() => {
   return false
 })
 
-onMounted(() => {
-  import('../assets/icons/symbol')
-})
+onMounted(() => import('../assets/icons/symbol'))
+
+// 是否显示博客主页, 当 layout 为 home 且没有 origin frontmatter 时渲染博客主页
+const isShowBlogHome = computed(() => data.frontmatter.value.layout === 'home' && !data.frontmatter.value.origin)
+// 是否显示时间线
+const isShowTimeLine = computed(() => data.frontmatter.value.timeline)
 </script>
 
 <script>
-export default defineComponent({})
+export default defineComponent({ components: { LayoutContainer } })
 </script>
 
 <template>
@@ -81,7 +86,18 @@ export default defineComponent({})
       <use :xlink:href="recordMenuShowState ? '#icon-left-arrow' : '#icon-right-arrow'"></use>
     </svg>
   </div>
+
   <Layout>
+    <template #home-hero-before>
+      <home-view v-if="isShowBlogHome"></home-view>
+    </template>
+
+    <template #layout-top>
+      <LayoutContainer v-if="isShowTimeLine">
+        <TimeLine></TimeLine>
+      </LayoutContainer>
+    </template>
+
     <template #doc-footer-before>doc-footer-before</template>
     <template #doc-before>doc-before</template>
     <template #doc-after>doc-after</template>
