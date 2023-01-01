@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRouter, useData, withBase } from 'vitepress'
 import { isMobileTerminal } from '../utils/flexible'
-import pages from '../../../../helper/pages.json'
+import { blogList, categoriesMap, tagsMap, default as pages } from '../utils/dealwithBlog'
 import BlogCard from './BlogCard.vue'
 import Pagination from './Pagination.vue'
 import JumpTo from './JumpTo.vue'
@@ -11,14 +11,11 @@ import { message } from '../lib/message'
 
 const router = useRouter()
 const data = useData()
-console.log('和撒旦撒擦擦大苏打', data.frontmatter.value)
 
 // 渲染图片的 src
 const imgSrc = computed(() => {
   const zd = isMobileTerminal.value ? 'mobile' : 'pc'
-  // return `https://imgapi.cn/api.php?zd=${zd}&fl=dongman&gs=images`
-  return `https://imgapi.cn/api.php?zd=${zd}&fl=suiji&gs=images`
-  // return `https://imgapi.cn/cos.php`
+  return `https://imgapi.cn/api.php?zd=${zd}&fl=dongman&gs=images`
 })
 
 // 主页上移的高度, 因为有 navBar
@@ -28,10 +25,6 @@ onMounted(() => {
   const { height } = navBarEle.getBoundingClientRect()
   mtNavBar.value = `${-height}px`
 })
-
-// 博客文章列表
-const blogList = pages.sort((a, b) => b.timestamp - a.timestamp)
-console.log(blogList)
 
 // 根据 blogList 生成分页的 pagingBlogList
 const generatePagingBlogList = (blogList, pageSize) => {
@@ -92,6 +85,27 @@ const jumpPage = (page) => {
     currentPage.value = page
   }
 }
+
+// 信息栏目 category 列表
+const categoryList = []
+Object.keys(categoriesMap).forEach((key) => {
+  categoryList.push({
+    categoryName: key,
+    categoryCount: categoriesMap[key].length,
+    link: '',
+  })
+})
+
+// 信息栏目 tags 列表
+const tagsList = []
+Object.keys(tagsMap).forEach((key) => {
+  tagsList.push({
+    tagName: key,
+    tagCount: tagsMap[key].length,
+    link: '',
+  })
+})
+console.log(tagsList)
 </script>
 
 <template>
@@ -121,7 +135,12 @@ const jumpPage = (page) => {
         </div>
       </div>
       <!-- 信息 -->
-      <HomeInfo :frontmatter="data.frontmatter.value"></HomeInfo>
+      <HomeInfo
+        :frontmatter="data.frontmatter.value"
+        :categoryList="categoryList"
+        :tagsList="tagsList"
+        :articleCount="pages.length"
+      ></HomeInfo>
     </div>
   </div>
 </template>

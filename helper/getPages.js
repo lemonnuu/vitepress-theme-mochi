@@ -64,9 +64,9 @@ const getContent = async (pathWay) => {
   const yamlArr = yamlRegExp.exec(content)
   if (!yamlArr || !yamlArr[1]) return false
   const yamlObj = yaml.load(yamlArr[1])
-  if (!yamlObj.date) return false
+  if (!yamlObj.date && !yamlObj.categories && !yamlObj.tags) return false
   yamlObj.link = pathWay.replace(path.resolve(config.articlePath), '').replaceAll('\\', '/').replace('.md', '')
-  yamlObj.timestamp = moment(yamlObj.date).valueOf()
+  if (yamlObj.date) yamlObj.timestamp = moment(yamlObj.date).valueOf()
   return yamlObj
 }
 

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import nav from './nav'
 import * as sidebar from './sidebar'
-import getPages from '../../helper/getPages';
+import getPages from '../../helper/getPages'
 
 const themeConfig = {
   logo: { light: '/logo-light.svg', dark: '/logo-dark.svg' }, // 主页 logo
@@ -49,7 +49,7 @@ const config = async () => {
     description: "Mochi's personal blog.", // 描述
     lastUpdated: true, // 开启最近更新时间
     ignoreDeadLinks: true, // 忽略无效链接
-    outDir: './dist', // 输出目录
+    outDir: '../dist', // 输出目录
     themeConfig,
   })
 }

@@ -5,30 +5,20 @@ import { randomRGB } from '../utils/color'
 import { isMobileTerminal } from '../utils/flexible'
 
 const props = defineProps({
+  articleCount: {
+    type: Number,
+    default: 0,
+  },
   frontmatter: {
     type: Object,
   },
+  categoryList: {
+    type: Array,
+  },
+  tagsList: {
+    type: Array,
+  },
 })
-
-const categoryList = [
-  {
-    categoryName: '随笔',
-    categoryCount: 3,
-  },
-  {
-    categoryName: '草稿',
-    categoryCount: 3,
-  },
-  {
-    categoryName: '锤你',
-    categoryCount: 3,
-  },
-  {
-    categoryName: '大家进啊',
-    categoryCount: 3,
-  },
-]
-const tagsList = ['All', 'JavaScript', 'Node', 'HTML', 'Webpack', 'Rollup', 'Vite']
 
 const avatarImg = computed(() =>
   props.frontmatter.avatar.startsWith('http') ? props.frontmatter.avatar : withBase(props.frontmatter.avatar)
@@ -45,7 +35,7 @@ const computedPCStickyHeight = () => {
   }
   return height + 60
 }
-const pcStickyHeight = ref(500)
+const pcStickyHeight = ref(720)
 onMounted(() => {
   pcStickyHeight.value = computedPCStickyHeight()
 })
@@ -66,12 +56,12 @@ onMounted(() => {
       <span class="mt-3 font-bold text-lg">{{ frontmatter.name }}</span>
       <div class="flex justify-center items-center mt-1">
         <p class="flex flex-col items-center justify-center">
-          <span class="text-xl font-medium">40</span>
+          <span class="text-xl font-medium">{{ articleCount }}</span>
           <span class="text-xs font-medium">Articles</span>
         </p>
         <p class="h-[2.75rem] border-r border-zinc-600 mx-10"></p>
         <p class="flex flex-col items-center justify-center">
-          <span class="text-xl font-medium">3</span>
+          <span class="text-xl font-medium">{{ tagsList.length }}</span>
           <span class="text-xs font-medium">Tags</span>
         </p>
       </div>
@@ -86,7 +76,7 @@ onMounted(() => {
       </ul>
     </div>
     <!-- 分类 -->
-    <div class="computed-pc-sticky-height mt-2 bottom-line">
+    <div v-if="categoryList.length" class="computed-pc-sticky-height mt-2 bottom-line">
       <div class="flex items-center mb-4">
         <svg class="icon-font mr-1" aria-hidden="true">
           <use xlink:href="#icon-category" class="fill-zinc-500"></use>
@@ -113,7 +103,7 @@ onMounted(() => {
       </ul>
     </div>
     <!-- 标签 -->
-    <div class="computed-pc-sticky-height mt-2">
+    <div v-if="tagsList.length" class="computed-pc-sticky-height mt-2">
       <div class="flex items-center mb-4">
         <svg class="icon-font mr-1" aria-hidden="true">
           <use xlink:href="#icon-tag" class="fill-zinc-500"></use>
@@ -122,14 +112,14 @@ onMounted(() => {
       </div>
       <ul class="flex flex-wrap items-center justify-center">
         <li
-          v-for="tag in tagsList"
-          :key="tag"
+          v-for="item in tagsList"
+          :key="item.tagName"
           class="py-1 px-2 rounded text-white mr-2 mb-2 text-xs font-normal cursor-pointer hover:scale-110 duration-150"
           :style="{
             backgroundColor: randomRGB(),
           }"
         >
-          {{ tag }}
+          {{ item.tagName }}
         </li>
       </ul>
     </div>

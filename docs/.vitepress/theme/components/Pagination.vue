@@ -21,9 +21,6 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
-// 1. 点击 ... 跳转 pagerCount -2
-// 2. 减它对半除以 2
-
 const prev = {
   text: 'Prev',
   value: 'Prev',
@@ -41,9 +38,7 @@ const rightDot = {
   value: 'rightDot',
 }
 const pagesList = ref([])
-console.log(props.pagesNumber)
-console.log(props.currentPage)
-console.log(props.pagerCount)
+
 watch(
   () => props.currentPage,
   () => {
