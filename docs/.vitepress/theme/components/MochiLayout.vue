@@ -74,7 +74,7 @@ export default defineComponent({})
   <!-- 控制菜单的显示与隐藏 -->
   <div v-if="isShowMenuControl" class="sidebar-nav-toggle" @click="toggleMenuShow">
     <svg class="icon-font icon-arrow" aria-hidden="true">
-      <use :xlink:href="recordMenuShowState ? '#icon-zuojiantou' : '#icon-youjiantou'"></use>
+      <use :xlink:href="recordMenuShowState ? '#icon-left-arrow' : '#icon-right-arrow'"></use>
     </svg>
   </div>
   <Layout>
@@ -86,7 +86,7 @@ export default defineComponent({})
     <template #aside-top v-if="outlineShowState">
       <div class="aside-top" @click="toggleOutlineShow" :class="[recordOutlineShowState ? 'show' : 'hidden']">
         <svg class="icon-font icon-eye" aria-hidden="true">
-          <use :xlink:href="recordOutlineShowState ? '#icon-yincang' : '#icon-yanjing_xianshi_o'"></use>
+          <use :xlink:href="recordOutlineShowState ? '#icon-close-eyes' : '#icon-open-eyes'"></use>
         </svg>
       </div>
     </template>

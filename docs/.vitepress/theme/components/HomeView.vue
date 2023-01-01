@@ -1,20 +1,24 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { useRouter } from 'vitepress'
+import { useRouter, useData } from 'vitepress'
 import { isMobileTerminal } from '../utils/flexible'
 import pages from '../../../../helper/pages.json'
 import BlogCard from './BlogCard.vue'
 import Pagination from './Pagination.vue'
 import JumpTo from './JumpTo.vue'
+import HomeInfo from './HomeInfo.vue'
 import { message } from '../lib/message'
 
 const router = useRouter()
+const data = useData()
+console.log('和撒旦撒擦擦大苏打', data.frontmatter.value)
 
 // 渲染图片的 src
 const imgSrc = computed(() => {
   const zd = isMobileTerminal.value ? 'mobile' : 'pc'
   // return `https://imgapi.cn/api.php?zd=${zd}&fl=dongman&gs=images`
   return `https://imgapi.cn/api.php?zd=${zd}&fl=suiji&gs=images`
+  // return `https://imgapi.cn/cos.php`
 })
 
 // 主页上移的高度, 因为有 navBar
@@ -46,7 +50,7 @@ const generatePagingBlogList = (blogList, pageSize) => {
 
 // 分页
 const total = blogList.length
-const pageSize = ref(6)
+const pageSize = computed(() => data.frontmatter.value.pageSize || 6)
 const pagesNumber = computed(() => Math.ceil(total / pageSize.value))
 const currentPage = ref(1)
 const pagingBlogList = ref([])
@@ -117,7 +121,7 @@ const jumpPage = (page) => {
         </div>
       </div>
       <!-- 信息 -->
-      <div class="bg-red-500 w-full h-[60px]"></div>
+      <HomeInfo :frontmatter="data.frontmatter.value"></HomeInfo>
     </div>
   </div>
 </template>

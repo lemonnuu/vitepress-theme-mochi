@@ -15,6 +15,9 @@ module.exports = {
         'error-200': '#f3471c',
         'error-300': '#ffffff',
       },
+      rotate: {
+        360: '360deg',
+      },
     },
   },
   plugins: [],

@@ -27,7 +27,7 @@ const onHandleClick = () => {
     />
     <button
       @click="onHandleClick"
-      class="inline-block text-sm font-bold h-8 leading-8 text-center px-2 rounded bg-white dark:bg-zinc-900 shadow-md dark:shadow dark:shadow-slate-700 border border-solid border-zinc-100 dark:border-zinc-800 mr-3 duration-200"
+      class="inline-block text-sm font-bold h-8 leading-8 text-center px-2 rounded bg-white dark:bg-zinc-900 shadow-md dark:shadow dark:shadow-slate-700 border border-solid border-zinc-100 dark:border-zinc-800 duration-200"
     >
       Go
     </button>
