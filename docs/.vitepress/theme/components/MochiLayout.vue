@@ -84,7 +84,7 @@ export default defineComponent({})
     <template #sidebar-nav-before> </template>
     <template #sidebar-nav-after>sidebar-nav-after</template>
     <template #aside-top v-if="outlineShowState">
-      <div class="aside-top" @click="toggleOutlineShow" :class="[recordOutlineShowState ? 'show' : 'hidden']">
+      <div class="aside-top" @click="toggleOutlineShow" :class="[recordOutlineShowState ? 'show-eyes' : 'hidden-eyes']">
         <svg class="icon-font icon-eye" aria-hidden="true">
           <use :xlink:href="recordOutlineShowState ? '#icon-close-eyes' : '#icon-open-eyes'"></use>
         </svg>
@@ -140,11 +140,11 @@ export default defineComponent({})
     position: absolute;
   }
 
-  &.show:hover::before {
+  &.show-eyes:hover::before {
     content: '隐藏大纲';
   }
 
-  &.hidden:hover::before {
+  &.hidden-eyes:hover::before {
     content: '显示大纲';
   }
 

@@ -99,7 +99,7 @@ const jumpPage = (page) => {
     <div class="h-screen overflow-hidden">
       <img class="min-h-screen align-bottom dark:opacity-[0.6]" :src="imgSrc" alt="" />
     </div>
-    <div id="blogblog" class="flex flex-col mt-[5%] xl:mt-0 xl:pt-[72px] mx-[5%] xl:flex-row xl:mx-[12%]">
+    <div id="blogblog" class="flex flex-col mt-[5%] md:mt-0 md:pt-[72px] mx-[5%] md:flex-row md:mx-[12%]">
       <!-- 博客列表 -->
       <div class="w-full mb-[20px]">
         <BlogCard
@@ -108,7 +108,7 @@ const jumpPage = (page) => {
           :data="item"
           @click="toJumpLink"
         ></BlogCard>
-        <div class="xl:flex xl:flex-wrap xl:justify-between xl:items-center">
+        <div class="md:flex md:flex-wrap md:justify-between md:items-center">
           <div class="flex justify-center">
             <Pagination
               :pages-number="pagesNumber"

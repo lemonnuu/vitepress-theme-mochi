@@ -87,7 +87,7 @@ onMounted(() => {
   <Transition name="down">
     <div
       v-show="isVisable"
-      class="min-w-[80%] xl:min-w-[420px] fixed top-[8%] left-[50%] translate-x-[-50%] z-50 flex items-center px-3 py-1.5 rounded-md border cursor-pointer"
+      class="min-w-[80%] md:min-w-[420px] fixed top-[8%] left-[50%] translate-x-[-50%] z-50 flex items-center px-3 py-1.5 rounded-md border cursor-pointer"
       :class="styles[type].containerClass"
     >
       <svg class="icon-font text-sm mr-4" aria-hidden="true">

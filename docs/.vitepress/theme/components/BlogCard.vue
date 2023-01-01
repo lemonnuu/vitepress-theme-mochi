@@ -15,7 +15,7 @@ const emit = defineEmits(['click'])
 <template>
   <div
     @click="emit('click', data)"
-    class="card-wrap bg-white dark:bg-zinc-800 rounded-md shadow dark:shadow-slate-700 border border-zinc-100 dark:border-zinc-800 mb-[5%] xl:mb-[3%] pl-[5%] flex flex-col pb-[4%] cursor-pointer group hover:shadow-md hover:border-zinc-300 hover:scale-105 duration-300"
+    class="card-wrap bg-white dark:bg-zinc-800 rounded-md shadow dark:shadow-slate-700 border border-zinc-100 dark:border-zinc-800 mb-[5%] md:mb-[3%] pl-[5%] flex flex-col pb-[4%] cursor-pointer group hover:shadow-md hover:border-zinc-300 hover:scale-105 duration-300"
   >
     <p class="card-title mt-[6%] text-lg font-bold">
       {{ data.title }}

@@ -52,7 +52,7 @@ onMounted(() => {
 <template>
   <div
     :style="[isMobileTerminal ? '' : { height: pcStickyHeight + 'px' }]"
-    class="bg-white w-full pb-7 border border-zinc-100 rounded-md shadow xl:w-[40%] xl:ml-8 xl:sticky xl:pb-0 xl:top-[72px] hover:shadow-lg px-3 text-sm dark:bg-zinc-800 dark:shadow-slate-600 dark:border-zinc-700 dark:shadow"
+    class="bg-white w-full pb-7 border border-zinc-100 rounded-md shadow md:w-[40%] md:ml-8 md:sticky md:pb-0 md:top-[72px] hover:shadow-lg px-3 text-sm dark:bg-zinc-800 dark:shadow-slate-600 dark:border-zinc-700 dark:shadow"
   >
     <!-- 头像 -->
     <div class="computed-pc-sticky-height flex flex-col items-center justify-center">
