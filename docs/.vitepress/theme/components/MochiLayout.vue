@@ -66,7 +66,7 @@ const isShowMenuControl = computed(() => {
 })
 
 onMounted(() => {
-  import('../icons/symbol')
+  import('../assets/icons/symbol')
 })
 </script>
 

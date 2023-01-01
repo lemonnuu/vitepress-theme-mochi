@@ -4,6 +4,7 @@
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
 }
 
+/* 隐藏滚动条 */
 :root::-webkit-scrollbar {
   display: none;
 }
@@ -13,6 +14,7 @@
   height: 52px;
 }
 
+/* 去除 logo title 背景色 */
 .VPNavBarTitle {
   background-color: transparent !important;
   border-bottom-color: transparent !important;
@@ -26,35 +28,13 @@
   overflow: hidden;
 }
 
-/* 添加 SourceCodePro 字体 https://github.com/adobe-fonts/source-code-pro */
-@font-face {
-  font-family: SourceCodePro;
-  src: url(../font/SourceCodePro.ttf);
-}
-
-/* 添加草莓蜜糖甜甜酥字体 */
-@font-face {
-  font-family: custom;
-  src: url(../font/草莓蜜糖甜甜酥.ttf);
-}
-
-/* layout 为 doc 时更换字体  */
-.vp-doc p {
-  /* font-family: 'SourceCodePro', 'custom'; */
-  font-family: 'SourceCodePro';
-}
-
+/* 采用 Source Code Pro 字体 */
+div,
+p,
+span,
+li,
 code {
-  font-family: 'SourceCodePro';
-}
-
-/* 重点句子渐变色 */
-.vp-doc i {
-  font-style: none;
-  background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  font-family: 'Source Code Pro' !important;
 }
 
 /* -------------------------------------- */
