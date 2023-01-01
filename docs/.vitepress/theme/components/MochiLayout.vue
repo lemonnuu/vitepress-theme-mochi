@@ -1,7 +1,7 @@
 <script setup>
 // Layout 暴露了插槽 https://vitepress.vuejs.org/guide/theme-introduction#layout-slots
 import DefaultTheme from 'vitepress/theme'
-import { defineComponent, ref, watch, computed, nextTick } from 'vue'
+import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData, useRoute, useRouter } from 'vitepress' // vitepress 暴露的 API
 
 const data = useData()
@@ -63,6 +63,10 @@ const isShowMenuControl = computed(() => {
   const layout = data.page.value.frontmatter.layout
   if (typeof layout === 'undefined' || layout === 'docs') return true
   return false
+})
+
+onMounted(() => {
+  import('../icons/symbol')
 })
 </script>
 

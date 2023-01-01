@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { withBase } from 'vitepress'
+import { onMounted, ref, computed } from 'vue'
 import { randomRGB } from '../utils/color'
 import { isMobileTerminal } from '../utils/flexible'
 
@@ -29,10 +30,11 @@ const categoryList = [
 ]
 const tagsList = ['All', 'JavaScript', 'Node', 'HTML', 'Webpack', 'Rollup', 'Vite']
 
-const gradientBackground = () => `-webkit-linear-gradient(90deg, ${randomRGB()}, ${randomRGB()})`
+const avatarImg = computed(() =>
+  props.frontmatter.avatar.startsWith('http') ? props.frontmatter.avatar : withBase(props.frontmatter.avatar)
+)
 
-// 点击 icon 跳转至相应页面
-const toLink = (targetLink) => window.open(targetLink)
+const gradientBackground = () => `-webkit-linear-gradient(90deg, ${randomRGB()}, ${randomRGB()})`
 
 // PC 时计算信息栏目各块高度
 const computedPCStickyHeight = () => {
@@ -57,7 +59,7 @@ onMounted(() => {
     <!-- 头像 -->
     <div class="computed-pc-sticky-height flex flex-col items-center justify-center">
       <img
-        :src="frontmatter.avatar"
+        :src="avatarImg"
         class="rounded-full w-[128px] h-[128px] mt-10 hover:rotate-360 hover:scale-110 duration-700"
         alt=""
       />
@@ -74,15 +76,12 @@ onMounted(() => {
         </p>
       </div>
       <ul class="flex items-center justify-center mt-4 mb-1">
-        <li
-          v-for="item in frontmatter.links"
-          :key="item.icon"
-          class="mx-2 cursor-pointer hover:scale-125 duration-150"
-          @click="toLink(item.link)"
-        >
-          <svg class="icon-font text-2xl" aria-hidden="true">
-            <use :xlink:href="`#${item.icon}`" :style="{ fill: randomRGB() }"></use>
-          </svg>
+        <li v-for="item in frontmatter.links" :key="item.icon" class="mx-2 cursor-pointer hover:scale-125 duration-150">
+          <a :href="item.link" target="_blank">
+            <svg class="icon-font text-2xl" aria-hidden="true">
+              <use :xlink:href="`#${item.icon}`" :style="{ fill: randomRGB() }"></use>
+            </svg>
+          </a>
         </li>
       </ul>
     </div>

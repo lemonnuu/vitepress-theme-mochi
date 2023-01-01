@@ -96,8 +96,8 @@ watch(
       v-for="item in pagesList"
       :key="item.value"
       @click="emit('click', item.value)"
-      :class="[currentPage === item.value ? 'bg-green-500 shadow-green-200 dark:bg-green-600' : '']"
       class="inline-block text-sm font-bold h-8 leading-8 text-center px-2 rounded bg-white dark:bg-zinc-900 shadow-md dark:shadow-sm dark:shadow-slate-700 border border-zinc-100 dark:border-zinc-800 mr-3 duration-200 mb-2 cursor-pointer"
+      :class="[currentPage === item.value ? 'bg-green-500 shadow-green-200 dark:bg-emerald-700' : '']"
     >
       {{ item.text }}
     </li>

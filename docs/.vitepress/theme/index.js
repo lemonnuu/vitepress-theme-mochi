@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import MochiLayout from './components/MochiLayout.vue'
 import HomeView from './components/HomeView.vue'
-import './icons/symbol'
 import './css/index.css'
 import './css/custom.css'
 import './css/tailwind.css'

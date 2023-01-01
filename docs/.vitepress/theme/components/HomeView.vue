@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { useRouter, useData } from 'vitepress'
+import { useRouter, useData, withBase } from 'vitepress'
 import { isMobileTerminal } from '../utils/flexible'
 import pages from '../../../../helper/pages.json'
 import BlogCard from './BlogCard.vue'
@@ -58,7 +58,7 @@ const pagerCount = ref(5)
 pagingBlogList.value = generatePagingBlogList(blogList, pageSize.value)
 
 const toJumpLink = (target) => {
-  router.go(target.link)
+  router.go(withBase(target.link))
 }
 
 const onHandleClickPagination = (targetPage) => {
