@@ -7,6 +7,8 @@ import LayoutContainer from './layoutContainer.vue'
 import TimeLine from './TimeLine.vue'
 import Classification from './Classification.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
+import PlumBossom from './PlumBossom.vue'
+import { useWindowSize } from '@vueuse/core'
 
 const data = useData()
 
@@ -103,6 +105,8 @@ const classificationMap = computed(() => {
       return {}
   }
 })
+
+const { width: windowWidth, height: windowHeight } = useWindowSize()
 </script>
 
 <script>
@@ -131,6 +135,18 @@ export default defineComponent({ components: { LayoutContainer, Classification }
           :classification-map="classificationMap"
         ></Classification>
       </LayoutContainer>
+    </template>
+
+    <template #layout-bottom>
+      <div class="fixed top-0 left-0 z-[-1] opacity-10">
+        <PlumBossom
+          :width="windowWidth"
+          :height="windowHeight"
+          :line-length="3"
+          around
+          :generator-random="0.494"
+        ></PlumBossom>
+      </div>
     </template>
 
     <template #doc-footer-before>doc-footer-before</template>
