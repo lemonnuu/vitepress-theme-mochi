@@ -20,6 +20,8 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['clickCategories', 'clickTags'])
+
 const avatarImg = computed(() =>
   props.frontmatter.avatar.startsWith('http') ? props.frontmatter.avatar : withBase(props.frontmatter.avatar)
 )
@@ -88,6 +90,7 @@ onMounted(() => {
         <li
           v-for="item in categoryList"
           :key="item.categoryName"
+          @click="emit('clickCategories', item)"
           class="category flex items-center justify-between p-3 bg-white border border-zinc-100 rounded-lg shadow mb-2 font-medium dark:bg-zinc-900/30 dark:shadow-slate-700 dark:border-zinc-800 hover:scale-105 cursor-pointer duration-150"
         >
           <span>{{ item.categoryName }}</span>
@@ -114,6 +117,7 @@ onMounted(() => {
         <li
           v-for="item in tagsList"
           :key="item.tagName"
+          @click="emit('clickTags', item)"
           class="py-1 px-2 rounded text-white mr-2 mb-2 text-xs font-normal cursor-pointer hover:scale-110 duration-150"
           :style="{
             backgroundColor: randomRGB(),

@@ -11,7 +11,6 @@ const props = defineProps({
 const router = useRouter()
 
 const toLink = () => {
-  // console.log(props.data)
   router.go(props.data.link)
 }
 </script>

@@ -5,6 +5,8 @@ import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData, useRoute, useRouter } from 'vitepress' // vitepress 暴露的 API
 import LayoutContainer from './layoutContainer.vue'
 import TimeLine from './TimeLine.vue'
+import Classification from './Classification.vue'
+import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 
 const data = useData()
 const route = useRoute()
@@ -71,12 +73,37 @@ onMounted(() => import('../assets/icons/symbol'))
 
 // 是否显示博客主页, 当 layout 为 home 且没有 origin frontmatter 时渲染博客主页
 const isShowBlogHome = computed(() => data.frontmatter.value.layout === 'home' && !data.frontmatter.value.origin)
+// 是否自定义 Page
+const isCustomizePage = computed(() => data.frontmatter.value.page)
 // 是否显示时间线
-const isShowTimeLine = computed(() => data.frontmatter.value.timeline)
+const isShowTimeLine = computed(() => data.frontmatter.value.page === 'timeline')
+
+// 如果展示 分类 和 tag, 跳转的 url
+const classificationTargetUrl = computed(() => {
+  switch (data.frontmatter.value.page) {
+    case 'category':
+      return '/category'
+    case 'tag':
+      return '/tag'
+    default:
+      return false
+  }
+})
+
+const classificationMap = computed(() => {
+  switch (data.frontmatter.value.page) {
+    case 'category':
+      return categoriesMap
+    case 'tag':
+      return tagsMap
+    default:
+      return {}
+  }
+})
 </script>
 
 <script>
-export default defineComponent({ components: { LayoutContainer } })
+export default defineComponent({ components: { LayoutContainer, Classification } })
 </script>
 
 <template>
@@ -92,9 +119,14 @@ export default defineComponent({ components: { LayoutContainer } })
       <home-view v-if="isShowBlogHome"></home-view>
     </template>
 
-    <template #layout-top>
-      <LayoutContainer v-if="isShowTimeLine">
-        <TimeLine></TimeLine>
+    <template v-if="isCustomizePage" #layout-top>
+      <LayoutContainer>
+        <TimeLine v-if="isShowTimeLine"></TimeLine>
+        <Classification
+          v-if="classificationTargetUrl"
+          :target-url="classificationTargetUrl"
+          :classification-map="classificationMap"
+        ></Classification>
       </LayoutContainer>
     </template>
 

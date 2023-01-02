@@ -102,9 +102,15 @@ Object.keys(tagsMap).forEach((key) => {
   tagsList.push({
     tagName: key,
     tagCount: tagsMap[key].length,
-    link: '',
   })
 })
+
+const onHandleClickCategories = (target) => {
+  router.go(withBase(`/category?origin=${target.categoryName}`))
+}
+const onHandleClickTags = (target) => {
+  router.go(withBase(`/tag?origin=${target.tagName}`))
+}
 </script>
 
 <template>
@@ -139,6 +145,8 @@ Object.keys(tagsMap).forEach((key) => {
         :categoryList="categoryList"
         :tagsList="tagsList"
         :articleCount="pages.length"
+        @clickCategories="onHandleClickCategories"
+        @clickTags="onHandleClickTags"
       ></HomeInfo>
     </div>
   </div>

@@ -1,4 +1,4 @@
 ---
 layout: page
-page: timeline
+page: category
 ---

@@ -15,6 +15,7 @@ categoriesList.forEach((item) => {
 // tags 列表
 const tagsList = pages.filter((item) => item.tags)
 export const tagsMap = {}
+tagsMap.All = tagsList
 tagsList.forEach((item) => {
   item.tags.forEach((tag) => {
     tagsMap[tag] ? tagsMap[tag].push(item) : (tagsMap[tag] = [item])
