@@ -3,6 +3,7 @@ import BlogCard from './BlogCard.vue'
 import { useRouter, withBase } from 'vitepress'
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
+import { useEventListener } from '@vueuse/core'
 
 const props = defineProps({
   classificationMap: {
@@ -33,11 +34,19 @@ const classificationList = computed(() => {
     : []
 })
 
-onMounted(() => {
+const changeCurrentFromUrl = () => {
   const url = new URL(location.href)
   if (url.searchParams.has('origin')) {
     currentClassification.value = url.searchParams.get('origin')
   }
+}
+
+onMounted(() => {
+  changeCurrentFromUrl()
+  // 监听浏览器前进后退按钮事件
+  useEventListener(window, 'popstate', () => {
+    changeCurrentFromUrl()
+  })
 })
 
 const onHandleClickCategoryItem = (target) => {

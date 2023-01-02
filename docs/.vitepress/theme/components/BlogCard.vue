@@ -21,19 +21,19 @@ const emit = defineEmits(['click'])
       {{ data.title }}
     </p>
     <div class="mt-[4%] flex flex-wrap text-sm text-zinc-400">
-      <div class="flex items-center justify-center mr-8 mb-1">
+      <div v-if="data.author" class="flex items-center justify-center mr-8 mb-1">
         <svg class="icon-font mr-3" aria-hidden="true">
           <use xlink:href="#icon-author" class="fill-zinc-500"></use>
         </svg>
         {{ data.author }}
       </div>
-      <div class="flex items-center justify-center mr-8 mb-1">
+      <div v-if="data.date" class="flex items-center justify-center mr-8 mb-1">
         <svg class="icon-font mr-3" aria-hidden="true">
           <use xlink:href="#icon-time" class="fill-zinc-500"></use>
         </svg>
         {{ data.date }}
       </div>
-      <div class="flex flex-wrap items-center mr-8 mb-1">
+      <div v-if="data.tags" class="flex flex-wrap items-center mr-8 mb-1">
         <svg class="icon-font mr-3" aria-hidden="true">
           <use xlink:href="#icon-tag" class="fill-zinc-500"></use>
         </svg>
