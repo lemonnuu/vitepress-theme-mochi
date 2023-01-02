@@ -8,9 +8,25 @@ import Pagination from './Pagination.vue'
 import JumpTo from './JumpTo.vue'
 import HomeInfo from './HomeInfo.vue'
 import { message } from '../lib/message'
+import TypeIt from 'typeit'
 
 const router = useRouter()
 const data = useData()
+
+// typeit 打字机
+const typeItWrap = ref(null)
+const runTypeIt = () => {
+  new TypeIt('#type-it', {
+    strings: "Welcome to Mochi's Blog.",
+    speed: 60,
+    waitUntilVisible: true,
+  })
+    .go()
+    .exec(() => {
+      setTimeout(() => (typeItWrap.value.style.opacity = 0), 1000)
+      setTimeout(() => (typeItWrap.value.style.display = 'none'), 2000)
+    })
+}
 
 // 渲染图片的 src
 const imgSrc = computed(() => {
@@ -24,6 +40,7 @@ onMounted(() => {
   const navBarEle = document.querySelector('.VPNav')
   const { height } = navBarEle.getBoundingClientRect()
   mtNavBar.value = `${-height}px`
+  runTypeIt()
 })
 
 // 根据 blogList 生成分页的 pagingBlogList
@@ -115,8 +132,13 @@ const onHandleClickTags = (target) => {
 
 <template>
   <div class="home-view">
-    <div class="h-screen overflow-hidden">
+    <div class="h-screen relative overflow-hidden">
       <img class="min-h-screen align-bottom dark:opacity-[0.6]" :src="imgSrc" alt="" />
+      <p
+        ref="typeItWrap"
+        id="type-it"
+        class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-xl md:text-4xl font-bold duration-1000"
+      ></p>
     </div>
     <div id="blogblog" class="flex flex-col mt-[5%] md:mt-0 md:pt-[72px] mx-[5%] md:flex-row md:mx-[12%]">
       <!-- 博客列表 -->
