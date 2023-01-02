@@ -1,7 +1,7 @@
 <script setup>
 import BlogCard from './BlogCard.vue'
 import { useRouter, withBase } from 'vitepress'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { useEventListener } from '@vueuse/core'
 
@@ -22,10 +22,11 @@ const { site } = useData()
 
 const router = useRouter()
 
-const classifications = Object.keys(props.classificationMap)
+const classifications = computed(() => Object.keys(props.classificationMap))
 
 // 当前选中的 category
-const currentClassification = classifications[0] ? ref(classifications[0]) : ref('')
+const currentClassification = ref('')
+watch(classifications, (val) => (currentClassification.value = val[0] ? val[0] : ''), { immediate: true })
 
 // 根据选中的 category 渲染列表
 const classificationList = computed(() => {
@@ -41,11 +42,20 @@ const changeCurrentFromUrl = () => {
   }
 }
 
+const popstateChange = () => {
+  const url = new URL(location.href)
+  if (url.searchParams.has('origin')) {
+    currentClassification.value = url.searchParams.get('origin')
+  } else {
+    currentClassification.value = classifications.value[0] ? classifications.value[0] : ''
+  }
+}
+
 onMounted(() => {
   changeCurrentFromUrl()
   // 监听浏览器前进后退按钮事件
   useEventListener(window, 'popstate', () => {
-    changeCurrentFromUrl()
+    popstateChange()
   })
 })
 

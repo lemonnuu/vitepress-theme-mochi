@@ -6,7 +6,7 @@ const nav = [
       { text: 'CSS', link: '/CSS/CSS/01_basic', activeMatch: '/CSS/' },
       { text: 'JavaScript', link: '/JAVASCRIPT/', activeMatch: '/JAVASCRIPT/' },
       { text: 'TypeScript', link: '/TYPESCRIPT/', activeMatch: '/TYPESCRIPT/' },
-      { text: 'Vue 全家桶', link: '/VUE/001_pre'},
+      { text: 'Vue 全家桶', link: '/VUE/001_pre' },
       { text: 'React.js', link: '/REACT/', activeMatch: '/REACT/' },
       { text: '构建工具链', link: '/ROLLUP/01_pre' },
       { text: 'Webpack', link: '/WEBPACK/', activeMatch: '/WEBPACK/' },
@@ -29,6 +29,14 @@ const nav = [
       { text: '网络安全', link: '/SAFE/', activeMatch: '/SAFE/' },
       { text: '算法', link: '/ALGORITHM/', activeMatch: '/ALGORITHM/' },
       { text: '面试', link: '/INTERVIEW/', activeMatch: '/INTERVIEW/' },
+    ],
+  },
+  {
+    text: '博客',
+    items: [
+      { text: '时间线', link: '/timeline' },
+      { text: '分类', link: '/category' },
+      { text: '标签', link: '/tag' },
     ],
   },
 ]
