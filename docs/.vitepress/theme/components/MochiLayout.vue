@@ -2,18 +2,13 @@
 import HomeView from './HomeView.vue'
 import DefaultTheme from 'vitepress/theme'
 import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
-import { useData, useRoute, useRouter } from 'vitepress' // vitepress 暴露的 API
+import { useData } from 'vitepress' // vitepress 暴露的 API
 import LayoutContainer from './layoutContainer.vue'
 import TimeLine from './TimeLine.vue'
 import Classification from './Classification.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 
 const data = useData()
-const route = useRoute()
-const router = useRouter()
-console.log('data', data)
-console.log('route', route)
-console.log('router', router.routes)
 
 const { Layout } = DefaultTheme
 
@@ -53,6 +48,14 @@ watch(outlineShowState, (val) => {
 
 // 记录 menu 当前初始状态, 默认为 true
 const recordMenuShowState = ref(true)
+
+// 监听 layout 变化改变 recordMenuShowState, 修复 doc -> home -> doc 时, recordMenuShowState 不准的问题
+watch(
+  () => data.frontmatter.value.layout,
+  () => {
+    recordMenuShowState.value = true
+  }
+)
 
 // 切换 menu 的显示状态
 const toggleMenuShow = () => {

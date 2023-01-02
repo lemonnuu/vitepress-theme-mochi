@@ -56,13 +56,13 @@ onMounted(() => {
         alt=""
       />
       <span class="mt-3 font-bold text-lg">{{ frontmatter.name }}</span>
-      <div class="flex justify-center items-center mt-1">
-        <p class="flex flex-col items-center justify-center">
+      <div class="flex w-full justify-center items-center mt-1">
+        <p class="w-[30%] flex flex-col items-center justify-center">
           <span class="text-xl font-medium">{{ articleCount }}</span>
           <span class="text-xs font-medium">Articles</span>
         </p>
-        <p class="h-[2.75rem] border-r border-zinc-600 mx-10"></p>
-        <p class="flex flex-col items-center justify-center">
+        <p class="h-[2.75rem] border-r border-zinc-600 mx-4"></p>
+        <p class="w-[30%] flex flex-col items-center justify-center">
           <span class="text-xl font-medium">{{ tagsList.length }}</span>
           <span class="text-xs font-medium">Tags</span>
         </p>
