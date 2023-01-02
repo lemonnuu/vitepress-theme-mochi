@@ -1,11 +1,11 @@
 ---
-title: 通过gitbash配置快捷指令
-author: Younglina
-date: '2022-09-07 15:27:46'
+title: 测试数据2
+author: 红豆
+date: '2021-09-07 15:27:46'
 categories:
- - 文档
+  - 孙悟空
 tags:
- - 小技巧
+  - 刘备
 ---
 
-[的骄傲](/CSS/index.md)
+测试数据 2

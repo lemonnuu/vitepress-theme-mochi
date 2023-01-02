@@ -1,11 +1,13 @@
 ---
-title: 通过gitbash配置快捷指令
-author: Younglina
+title: 测试数据1
+author: 满汉三
 date: '2022-09-06'
 categories:
- - 文档
+  - 孙悟空
+  - 猪八戒
 tags:
- - 小技巧
+  - 诸葛亮
+  - 赵云
 ---
 
-[hello](/CSS/test)
+测试数据 1
