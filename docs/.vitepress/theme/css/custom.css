@@ -28,15 +28,6 @@
   overflow: hidden;
 }
 
-/* 采用 Source Code Pro 字体 */
-div,
-p,
-span,
-li,
-code {
-  font-family: 'Source Code Pro' !important;
-}
-
 /* -------------------------------------- */
 
 .linear-color {

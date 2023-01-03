@@ -9,6 +9,7 @@ import Classification from './Classification.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 import PlumBossom from './PlumBossom.vue'
 import { useWindowSize } from '@vueuse/core'
+import GoTop from './GoTop.vue'
 
 const data = useData()
 
@@ -110,7 +111,7 @@ const { width: windowWidth, height: windowHeight } = useWindowSize()
 </script>
 
 <script>
-export default defineComponent({ components: { LayoutContainer, Classification } })
+export default defineComponent({ components: { LayoutContainer, Classification, GoTop } })
 </script>
 
 <template>
@@ -147,6 +148,7 @@ export default defineComponent({ components: { LayoutContainer, Classification }
           :generator-random="0.494"
         ></PlumBossom>
       </div>
+      <GoTop></GoTop>
     </template>
 
     <template #doc-footer-before>doc-footer-before</template>
