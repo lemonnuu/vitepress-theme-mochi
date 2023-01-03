@@ -52,7 +52,7 @@ onMounted(() => {
     <div class="computed-pc-sticky-height flex flex-col items-center justify-center">
       <img
         :src="avatarImg"
-        class="rounded-full w-[128px] h-[128px] mt-10 hover:rotate-360 hover:scale-110 duration-700"
+        class="filter-img rounded-full w-[128px] h-[128px] mt-10 hover:rotate-360 hover:scale-110 duration-700"
         alt=""
       />
       <span class="mt-3 font-bold text-lg">{{ frontmatter.name }}</span>

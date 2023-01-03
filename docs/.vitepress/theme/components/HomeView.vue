@@ -23,8 +23,12 @@ const runTypeIt = () => {
   })
     .go()
     .exec(() => {
-      setTimeout(() => (typeItWrap.value.style.opacity = 0), 1000)
-      setTimeout(() => (typeItWrap.value.style.display = 'none'), 2000)
+      setTimeout(() => {
+        typeItWrap.value && (typeItWrap.value.style.opacity = 0)
+      }, 1000)
+      setTimeout(() => {
+        typeItWrap.value && (typeItWrap.value.style.display = 'none')
+      }, 2000)
     })
 }
 
@@ -133,7 +137,7 @@ const onHandleClickTags = (target) => {
 <template>
   <div class="home-view">
     <div class="h-screen relative overflow-hidden">
-      <img class="min-h-screen align-bottom dark:opacity-[0.6]" :src="imgSrc" alt="" />
+      <img class="filter-img min-h-screen align-bottom dark:opacity-[0.6]" :src="imgSrc" alt="" />
       <p
         ref="typeItWrap"
         id="type-it"

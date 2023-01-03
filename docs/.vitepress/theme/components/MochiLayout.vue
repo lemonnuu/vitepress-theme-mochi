@@ -3,13 +3,14 @@ import HomeView from './HomeView.vue'
 import DefaultTheme from 'vitepress/theme'
 import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData } from 'vitepress' // vitepress 暴露的 API
-import LayoutContainer from './layoutContainer.vue'
+import LayoutContainer from './LayoutContainer.vue'
 import TimeLine from './TimeLine.vue'
 import Classification from './Classification.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 import PlumBossom from './PlumBossom.vue'
 import { useWindowSize } from '@vueuse/core'
 import GoTop from './GoTop.vue'
+import { filterImgClass } from '../constants'
 
 const data = useData()
 
@@ -108,6 +109,17 @@ const classificationMap = computed(() => {
 })
 
 const { width: windowWidth, height: windowHeight } = useWindowSize()
+
+// v-viewer 过滤掉 logo 等图片, 方法依据有无指定类名
+const vViewerFilterImg = (img) => {
+  for (const item of filterImgClass) {
+    if (img.className.includes(item)) return false
+  }
+  img.style.cursor = 'zoom-in'
+  return true
+}
+// v-viewer 的标题展示 alt 属性
+const vViewerTitle = (img) => img.alt
 </script>
 
 <script>
@@ -122,7 +134,7 @@ export default defineComponent({ components: { LayoutContainer, Classification, 
     </svg>
   </div>
 
-  <Layout>
+  <Layout v-viewer="{ title: vViewerTitle, filter: vViewerFilterImg }">
     <template #home-hero-before>
       <home-view v-if="isShowBlogHome"></home-view>
     </template>
