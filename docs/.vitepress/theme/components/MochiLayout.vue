@@ -135,11 +135,14 @@ export default defineComponent({ components: { LayoutContainer, Classification, 
     </svg>
   </div>
 
+  <!-- 添加 v-viewer 放大图片 -->
   <Layout v-viewer="{ title: vViewerTitle, filter: vViewerFilterImg }">
+    <!-- 博客主页 -->
     <template #home-hero-before>
       <home-view v-if="isShowBlogHome"></home-view>
     </template>
 
+    <!-- 自定义 page, timeline、categories、tags -->
     <template v-if="isCustomizePage" #layout-top>
       <LayoutContainer>
         <TimeLine v-if="isShowTimeLine"></TimeLine>
@@ -151,6 +154,7 @@ export default defineComponent({ components: { LayoutContainer, Classification, 
       </LayoutContainer>
     </template>
 
+    <!-- 梅花特效与悬挂喵 -->
     <template #layout-bottom>
       <div class="fixed top-0 left-0 z-[-1] opacity-10">
         <PlumBossom
@@ -164,11 +168,7 @@ export default defineComponent({ components: { LayoutContainer, Classification, 
       <GoTop></GoTop>
     </template>
 
-    <template #doc-footer-before>doc-footer-before</template>
-    <template #doc-before>doc-before</template>
-    <template #doc-after>doc-after</template>
-    <template #sidebar-nav-before> </template>
-    <template #sidebar-nav-after>sidebar-nav-after</template>
+    <!-- 大纲显示隐藏 -->
     <template #aside-top v-if="outlineShowState">
       <div class="aside-top" @click="toggleOutlineShow" :class="[recordOutlineShowState ? 'show-eyes' : 'hidden-eyes']">
         <svg class="icon-font icon-eye" aria-hidden="true">

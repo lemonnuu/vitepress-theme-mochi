@@ -1,22 +1,22 @@
 import { defineConfig } from 'vitepress'
 import nav from './nav'
-import * as sidebar from './sidebar'
+// import * as sidebar from './sidebar'
 import getPages from '../../helper/getPages'
 
 const themeConfig = {
   logo: { light: '/logo-light.svg', dark: '/logo-dark.svg' }, // 主页 logo
   siteTitle: false, // 主页标题, 设置为 false 可不显示
   nav,
-  sidebar: {
-    '/HTML/': sidebar.htmlSidebar,
-    '/CSS/': sidebar.cssSidebar,
-    '/ROLLUP/': sidebar.buildToolSidebar,
-    '/ESBUILD/': sidebar.buildToolSidebar,
-    '/PARCEL/': sidebar.buildToolSidebar,
-    '/WEBPACK/': sidebar.buildToolSidebar,
-    '/VUE/': sidebar.vueSidebar,
-    '/PINIA/': sidebar.vueSidebar,
-  },
+  // sidebar: {
+  //   '/HTML/': sidebar.htmlSidebar,
+  //   '/CSS/': sidebar.cssSidebar,
+  //   '/ROLLUP/': sidebar.buildToolSidebar,
+  //   '/ESBUILD/': sidebar.buildToolSidebar,
+  //   '/PARCEL/': sidebar.buildToolSidebar,
+  //   '/WEBPACK/': sidebar.buildToolSidebar,
+  //   '/VUE/': sidebar.vueSidebar,
+  //   '/PINIA/': sidebar.vueSidebar,
+  // },
   outlineTitle: '大纲', // 大纲标题
   outline: [2, 3], // 大纲层级
   lastUpdatedText: '上次更新时间',

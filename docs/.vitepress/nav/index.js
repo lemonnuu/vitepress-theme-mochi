@@ -1,42 +1,34 @@
 const nav = [
+  // 笔记相关, 自动生成 nav 和 siderbar
   {
-    text: '基础强化',
+    text: 'Notes',
     items: [
-      { text: 'HTML', link: '/HTML/', activeMatch: '/HTML/' },
-      { text: 'CSS', link: '/CSS/CSS/01_basic', activeMatch: '/CSS/' },
-      { text: 'JavaScript', link: '/JAVASCRIPT/', activeMatch: '/JAVASCRIPT/' },
-      { text: 'TypeScript', link: '/TYPESCRIPT/', activeMatch: '/TYPESCRIPT/' },
-      { text: 'Vue 全家桶', link: '/VUE/001_pre' },
-      { text: 'React.js', link: '/REACT/', activeMatch: '/REACT/' },
-      { text: '构建工具链', link: '/ROLLUP/01_pre' },
-      { text: 'Webpack', link: '/WEBPACK/', activeMatch: '/WEBPACK/' },
-      { text: 'Vite', link: '/VITE/', activeMatch: '/VITE/' },
-      { text: 'Node.js', link: '/NODE/', activeMatch: '/NODE/' },
-      { text: '数据库', link: '/DATABASE/', activeMatch: '/DATABASE/' },
+      { text: 'Timeline', link: '/timeline' },
+      { text: 'Categories', link: '/category' },
+      { text: 'Tags', link: '/tag' },
     ],
   },
+  // 面试相关, 自动生成 nav 和 siderbar
   {
-    text: '源码解析',
+    text: 'Interview',
     items: [
-      { text: 'Vue2', link: '/VUE2/', activeMatch: '/VUE2/' },
-      { text: 'Vue3', link: '/VUE3/', activeMatch: '/VUE3/' },
+      { text: 'Timeline', link: '/timeline' },
+      { text: 'Categories', link: '/category' },
+      { text: 'Tags', link: '/tag' },
     ],
   },
+  // 项目相关, 得再画个页面
   {
-    text: '琐碎知识',
-    items: [
-      { text: '第三方库', link: '/LIBRARY/', activeMatch: '/LIBRARY/' },
-      { text: '网络安全', link: '/SAFE/', activeMatch: '/SAFE/' },
-      { text: '算法', link: '/ALGORITHM/', activeMatch: '/ALGORITHM/' },
-      { text: '面试', link: '/INTERVIEW/', activeMatch: '/INTERVIEW/' },
-    ],
+    text: 'Projects',
+    link: '/_PROJECTS/',
   },
+  // 帖子相关, 依靠博客功能检索
   {
-    text: '博客',
+    text: 'Posts',
     items: [
-      { text: '时间线', link: '/timeline' },
-      { text: '分类', link: '/category' },
-      { text: '标签', link: '/tag' },
+      { text: 'Timeline', link: '/timeline' },
+      { text: 'Categories', link: '/category' },
+      { text: 'Tags', link: '/tag' },
     ],
   },
 ]
