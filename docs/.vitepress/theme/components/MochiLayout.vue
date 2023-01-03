@@ -116,6 +116,7 @@ const vViewerFilterImg = (img) => {
     if (img.className.includes(item)) return false
   }
   img.style.cursor = 'zoom-in'
+  img.classList.add('rounded', 'md:rounded-md')
   return true
 }
 // v-viewer 的标题展示 alt 属性
