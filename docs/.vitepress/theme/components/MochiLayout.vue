@@ -76,7 +76,15 @@ const isShowMenuControl = computed(() => {
   return false
 })
 
-onMounted(() => import('../assets/icons/symbol'))
+const hasVPSidebar = ref(true)
+const judgeHasVPSidebar = () => {
+  if (!document.querySelector('.VPSidebar')) hasVPSidebar.value = false
+}
+
+onMounted(() => {
+  import('../assets/icons/symbol')
+  judgeHasVPSidebar()
+})
 
 // 是否显示博客主页, 当 layout 为 home 且没有 origin frontmatter 时渲染博客主页
 const isShowBlogHome = computed(() => data.frontmatter.value.layout === 'home' && !data.frontmatter.value.origin)
@@ -129,7 +137,7 @@ export default defineComponent({ components: { LayoutContainer, Classification, 
 
 <template>
   <!-- 控制菜单的显示与隐藏 -->
-  <div v-if="isShowMenuControl" class="sidebar-nav-toggle" @click="toggleMenuShow">
+  <div v-if="isShowMenuControl && hasVPSidebar" class="sidebar-nav-toggle" @click="toggleMenuShow">
     <svg class="icon-font icon-arrow" aria-hidden="true">
       <use :xlink:href="recordMenuShowState ? '#icon-left-arrow' : '#icon-right-arrow'"></use>
     </svg>
