@@ -9,6 +9,9 @@ pnpm build
 # 进入待发布的目录
 cd dist
 
+# 告诉 github pages 当前网站不是基于 jekyll 
+touch .nojekyll
+
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
