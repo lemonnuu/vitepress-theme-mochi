@@ -84,7 +84,6 @@ const judgeHasVPSidebar = () => {
 watch(
   () => data.frontmatter.value.layout,
   () => {
-    console.log('和速度飒飒豆瓣安徽的擦')
     nextTick(() => {
       hasVPSidebar.value = document.querySelector('.VPSidebar') ? true : false
     })

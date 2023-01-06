@@ -4,7 +4,7 @@
 set -e
 
 # 构建
-npm run build
+pnpm build
 
 # 进入待发布的目录
 cd dist
