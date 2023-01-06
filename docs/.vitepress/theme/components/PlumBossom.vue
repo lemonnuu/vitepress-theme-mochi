@@ -194,7 +194,7 @@ function frame() {
 
 let frameCount = 0
 function startFrame() {
-  requestAnimationFrame(() => {
+  window.requestAnimationFrame(() => {
     frameCount += 1
     frameCount % 4 === 0 && frame()
     startFrame()
