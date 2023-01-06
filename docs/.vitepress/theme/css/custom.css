@@ -28,6 +28,11 @@
   overflow: hidden;
 }
 
+/* span 高亮文字包括 code 代码块的内容 */
+span code {
+  color: inherit !important;
+}
+
 /* -------------------------------------- */
 
 .linear-color {
