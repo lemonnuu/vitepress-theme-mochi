@@ -2,7 +2,7 @@ const nav = [
   // 笔记相关, 自动生成 siderbar, 但是与博客系统分开, 没有 date、categories、tags 的 frontmatter
   {
     text: 'Notes',
-    items: [{ text: 'Build Tools', link: '/_NOTES/Build Tools/ROLLUP/01_pre' }],
+    items: [{ text: 'Build Tools', link: '/_NOTES/Build Tools/rollup/01_pre' }],
   },
   // 面试相关, 自动生成 nav 和 siderbar
   // {
