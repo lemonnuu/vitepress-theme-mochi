@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter } from 'vitepress'
+import { useRouter, withBase } from 'vitepress'
 
 const props = defineProps({
   data: {
