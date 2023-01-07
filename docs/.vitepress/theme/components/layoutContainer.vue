@@ -1,12 +1,5 @@
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'LayoutContainer',
-})
-</script>
-
 <script setup>
-import { defineComponent, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 const teleportTarget = ref('')
 onMounted(() => (teleportTarget.value = '.VPPage'))
 </script>

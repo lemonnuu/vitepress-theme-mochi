@@ -1,11 +1,11 @@
 <script setup>
 import HomeView from './HomeView.vue'
 import DefaultTheme from 'vitepress/theme'
-import { defineComponent, ref, watch, computed, nextTick, onMounted } from 'vue'
+import { ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData } from 'vitepress' // vitepress 暴露的 API
-import LayoutContainer from './LayoutContainer.vue'
 import TimeLine from './TimeLine.vue'
 import Classification from './Classification.vue'
+import LayoutContainer from './LayoutContainer.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 import PlumBossom from './PlumBossom.vue'
 import { useWindowSize } from '@vueuse/core'
@@ -82,7 +82,7 @@ const judgeHasVPSidebar = () => {
 }
 
 watch(
-  () => data.frontmatter.value.layout,
+  () => data.page.value.relativePath,
   () => {
     nextTick(() => {
       hasVPSidebar.value = document.querySelector('.VPSidebar') ? true : false
@@ -138,10 +138,6 @@ const vViewerFilterImg = (img) => {
 }
 // v-viewer 的标题展示 alt 属性
 const vViewerTitle = (img) => img.alt
-</script>
-
-<script>
-export default defineComponent({ components: { LayoutContainer, Classification, GoTop } })
 </script>
 
 <template>
