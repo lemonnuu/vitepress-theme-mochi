@@ -1,6 +1,6 @@
 # mochi-blog
 
-Mohci 的个人博客
+vitepress-theme-mochi
 
 ## dev & build
 
@@ -12,4 +12,4 @@ bash deploy.sh
 
 ### 网址
 
-[gitPages](https://lemonnuu.github.io/mochi-blog/)
+[gitPages](https://lemonnuu.github.io/vitepress-theme-mochi/)
