@@ -1,6 +1,6 @@
 ---
 date: '2023-01-06 20:30:28'
-title: VitePress 部署在 GitPage 成功后资源却 404
+title: VitePress 部署在 Github Pages 成功后资源却 404
 titleTemplate: false
 author: Mochi
 outline: [2, 4]
@@ -8,13 +8,14 @@ categories:
   - post
 tags:
   - vitepress
+  - pit
 ---
 
-# VitePress 部署在 GitPage 成功后资源却 404
+# VitePress 部署在 Github Pages 成功后资源却 404
 
 <hr />
 
-在部署 VitePress 至 GitPage 时, 遇见了一个奇怪的现象：除了主页可以访问, 其它的文件夹资源访问都是 404。
+在部署 VitePress 至 Github Pages 时, 遇见了一个奇怪的现象：除了主页可以访问, 其它的文件夹资源访问都是 404。
 
 ![gitpage 部署成功后资源 404](../../images/POSTS/pits/001_deploy-gitpage-jekyll-404.png)
 
