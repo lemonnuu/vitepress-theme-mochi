@@ -5,7 +5,7 @@ import { ref, watch, computed, nextTick, onMounted } from 'vue'
 import { useData } from 'vitepress' // vitepress 暴露的 API
 import TimeLine from './TimeLine.vue'
 import Classification from './Classification.vue'
-import LayoutContainer from './LayoutContainer.vue'
+// import LayoutContainer from './LayoutContainer.vue'
 import { categoriesMap, tagsMap } from '../utils/dealwithBlog'
 import PlumBossom from './PlumBossom.vue'
 import { useWindowSize } from '@vueuse/core'
@@ -156,7 +156,7 @@ const vViewerTitle = (img) => img.alt
     </template>
 
     <!-- 自定义 page, timeline、categories、tags -->
-    <template v-if="isCustomizePage" #layout-top>
+    <!-- <template v-if="isCustomizePage" #layout-top>
       <LayoutContainer>
         <TimeLine v-if="isShowTimeLine"></TimeLine>
         <Classification
@@ -165,7 +165,7 @@ const vViewerTitle = (img) => img.alt
           :classification-map="classificationMap"
         ></Classification>
       </LayoutContainer>
-    </template>
+    </template> -->
 
     <!-- 梅花特效与悬挂喵 -->
     <template #layout-bottom>
