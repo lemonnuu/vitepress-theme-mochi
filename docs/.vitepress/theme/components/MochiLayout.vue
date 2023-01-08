@@ -158,14 +158,12 @@ const vViewerTitle = (img) => img.alt
     <!-- 自定义 page, timeline、categories、tags -->
     <template v-if="isCustomizePage" #layout-top>
       <LayoutContainer>
-        <div>
-          <TimeLine v-if="isShowTimeLine"></TimeLine>
-          <Classification
-            v-if="classificationTargetUrl"
-            :target-url="classificationTargetUrl"
-            :classification-map="classificationMap"
-          ></Classification>
-        </div>
+        <TimeLine v-if="isShowTimeLine"></TimeLine>
+        <Classification
+          v-if="classificationTargetUrl"
+          :target-url="classificationTargetUrl"
+          :classification-map="classificationMap"
+        ></Classification>
       </LayoutContainer>
     </template>
 

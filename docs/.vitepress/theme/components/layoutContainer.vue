@@ -5,11 +5,9 @@ onMounted(() => (teleportTarget.value = '.VPPage'))
 </script>
 
 <template>
-  <div>
-    <Teleport v-if="teleportTarget" :to="teleportTarget">
-      <slot></slot>
-    </Teleport>
-  </div>
+  <Teleport v-if="teleportTarget" :to="teleportTarget">
+    <slot></slot>
+  </Teleport>
 </template>
 
 <style scoped lang="scss"></style>
