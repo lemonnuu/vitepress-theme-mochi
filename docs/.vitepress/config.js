@@ -36,7 +36,7 @@ const config = async () => {
   }
 
   return defineConfig({
-    base: '/mochi-blog', // 基础路径
+    base: '/vitepress-theme-mochi', // 基础路径
     title: 'Mochi', // 网页标题
     titleTemplate: 'Blog',
     description: "Mochi's personal blog.", // 描述
